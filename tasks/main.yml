@@ -8,7 +8,7 @@
   sudo: yes
 
 - name: Create folder for virtualenv
-  file: state=directory owner={{ virtualenv_user }} {{ virtualenv_group }} path={{ virtualenv_path }}
+  file: state=directory owner={{ virtualenv_user }} group={{ virtualenv_group }} path={{ virtualenv_path }}
   sudo: yes
 
 - name: Check whether virtualenv exists
