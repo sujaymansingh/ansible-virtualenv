@@ -1,0 +1,28 @@
+- name: Install apt packages
+  apt: pkg={{ item }} state=present update_cache=true
+  with_items: [build-essential, python-dev, python-pip]
+  sudo: yes
+
+- name: Install core virtualenv
+  command: pip install virtualenv
+  sudo: yes
+
+- name: Create folder for virtualenv
+  file: state=directory owner={{ virtualenv_user }} {{ virtualenv_group }} path={{ virtualenv_path }}
+  sudo: yes
+
+- name: Check whether virtualenv exists
+  stat: path="{{ virtualenv_path }}/bin/activate"
+  register: virtualenv_activate
+
+- name: Create the virtualenv
+  command: virtualenv {{ virtualenv_path }} --distribute
+  sudo: yes
+  sudo_user: "{{ virtualenv_user }}"
+  when: virtualenv_activate.stat.exists != true
+
+- name: Install requirements
+  pip: requirements={{ virtualenv_requirements_file }} virtualenv={{ virtualenv_path }}
+  sudo: yes
+  sudo_user: "{{ virtualenv_user }}"
+  when: virtualenv_requirements_file is defined
