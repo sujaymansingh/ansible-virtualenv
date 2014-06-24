@@ -21,6 +21,12 @@
   sudo_user: "{{ virtualenv_user }}"
   when: virtualenv_activate.stat.exists != true
 
+- name: Reinstall pip version ({{ virtualenv_pip_version }})
+  pip: name=pip version={{ virtualenv_pip_version }} virtualenv={{ virtualenv_path }}
+  sudo: yes
+  sudo_user: "{{ virtualenv_user }}"
+  when: virtualenv_pip_version is defined
+
 - name: Install requirements
   pip: requirements={{ virtualenv_requirements_file }} virtualenv={{ virtualenv_path }}
   sudo: yes
