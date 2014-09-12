@@ -16,7 +16,7 @@
   register: virtualenv_activate
 
 - name: Create the virtualenv
-  command: virtualenv {{ virtualenv_path }} --distribute
+  command: virtualenv {{ virtualenv_path }} --distribute {{ virtualenv_site_packages }}
   sudo: yes
   sudo_user: "{{ virtualenv_user }}"
   when: virtualenv_activate.stat.exists != true
