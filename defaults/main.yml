@@ -1,0 +1,1 @@
+virtualenv_site_packages: "--no-site-packages"
