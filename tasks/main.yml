@@ -28,7 +28,7 @@
   when: virtualenv_pip_version is defined
 
 - name: Install requirements
-  pip: requirements={{ virtualenv_requirements_file }} virtualenv={{ virtualenv_path }}
+  pip: requirements={{ virtualenv_requirements_file }} virtualenv={{ virtualenv_path }} extra_args='--process-dependency-links'
   sudo: yes
   sudo_user: "{{ virtualenv_user }}"
   when: virtualenv_requirements_file is defined
