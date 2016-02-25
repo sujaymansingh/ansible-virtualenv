@@ -22,3 +22,5 @@ If you want to specify virtualenv version, use
 ```
   virtualenv_version : "13.0.0"
 ```
+
+Otherwise the latest virtualenv version will be installed if `virtualenv_version` is not defined.
