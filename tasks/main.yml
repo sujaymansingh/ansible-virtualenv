@@ -3,9 +3,15 @@
   with_items: [build-essential, python-dev, python-pip]
   sudo: yes
 
-- name: Install core virtualenv
+- name: Install virtualenv version ({{ virtualenv_version }})
+  command: pip install virtualenv=={{ virtualenv_version }}
+  sudo: yes
+  when: virtualenv_version is defined
+
+- name: Install latest virtualenv version
   command: pip install virtualenv
   sudo: yes
+  when: virtualenv_version is not defined
 
 - name: Create folder for virtualenv
   file: state=directory owner={{ virtualenv_user }} group={{ virtualenv_group }} path={{ virtualenv_path }}
