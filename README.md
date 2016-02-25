@@ -16,3 +16,9 @@ If you want to have system site packages, use
 ```
     virtualenv_site_packages: "--system-site-packages"
 ```
+
+If you want to specify virtualenv version, use
+
+```
+  virtualenv_version : "13.0.0"
+```
