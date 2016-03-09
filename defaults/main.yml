@@ -1,1 +1,2 @@
 virtualenv_site_packages: "--no-site-packages"
+virtualenv_python_major_version: 2
