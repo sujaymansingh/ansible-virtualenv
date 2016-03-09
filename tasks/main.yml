@@ -3,7 +3,7 @@
   with_items: [build-essential, python-dev, python-pip]
   sudo: yes
 
-- name: Install apt python-pip3
+- name: Install apt python3-pip
   apt: pkg=python3-pip state=present
   sudo: yes
   when: virtualenv_python_major_version == 3
