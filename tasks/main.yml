@@ -3,6 +3,11 @@
   with_items: [build-essential, python-dev, python-pip]
   sudo: yes
 
+- name: Install apt python-pip3
+  apt: pkg=python3-pip state=present
+  sudo: yes
+  when: virtualenv_python_major_version == 3
+
 - name: Install core virtualenv
   command: pip install virtualenv
   sudo: yes
@@ -16,7 +21,7 @@
   register: virtualenv_activate
 
 - name: Create the virtualenv
-  command: virtualenv {{ virtualenv_path }} --distribute {{ virtualenv_site_packages }}
+  command: virtualenv {{ virtualenv_path }} --distribute --python={{ virtualenv_python_executable }} {{ virtualenv_site_packages }}
   sudo: yes
   sudo_user: "{{ virtualenv_user }}"
   when: virtualenv_activate.stat.exists != true

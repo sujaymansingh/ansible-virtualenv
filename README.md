@@ -16,3 +16,9 @@ If you want to have system site packages, use
 ```
     virtualenv_site_packages: "--system-site-packages"
 ```
+
+If you want to use python 3, use
+
+```
+    virtualenv_python_major_version: 3
+```
